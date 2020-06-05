@@ -1,0 +1,76 @@
+
+
+
+.big-heading {
+  font-size: 2rem;
+  line-height: 1.5;
+  position: absolute;
+  text-align: center;
+  top: 120px;
+  margin: 0 20px 30px 40px;
+  color: black;
+  font-family: 'Chelsea Market', cursive;
+}
+.big-heading2{
+   font-size: 2rem;
+  line-height: 1.5;
+  position: absolute;
+  text-align: center;
+    margin-left:130px;
+     top: 190px;
+     color: black;
+     font-family: 'Chelsea Market', cursive;
+}
+
+
+/* Buttons */
+
+.button-pg {
+  position: absolute;
+  margin: auto 200px 260px auto;
+  top: 280px;
+  right: 120px;
+  border-radius: 30px;
+  font-size: 1.6rem;
+  border: 3px solid #16817a; 
+  padding: 2px 27px;
+  background-color: #ffff;
+}
+
+
+
+.button-title{
+  font-family: 'Balsamiq Sans', cursive;
+  color: #16817a;
+  font-weight: bolder;
+  
+
+}
+
+  .button-title:hover{
+    color: #024249;
+    border: 2px solid #024249;
+     box-shadow: 0 12px 16px 0 rgba(109, 161, 230, 0.24), 0 17px 50px 0 rgba(80, 159, 248, 0.19);
+  }
+
+
+.home{
+    position: relative;
+    justify-content: center;
+}
+
+/* Title Image */
+
+.title-image {
+  width: 60%;
+ left: 400px;
+ right: 600px;
+ display: flex;
+ margin: 90px 170px auto;
+}
+
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
