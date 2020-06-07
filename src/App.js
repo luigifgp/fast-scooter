@@ -3,9 +3,9 @@ import './App.css';
 import Header from '../src/components/header-component/header-components';
 import Homepage from './components/homepage/homepage-component';
 import { Switch, Route, Redirect } from "react-router-dom";
-import LoginModal from "react-login-modal-sm";
-import {facebookConfig, googleConfig} from "./modal-login/social-config";
-import SignInUp from './components/sign-in-sign-up-components/sign-in.sign-up';
+import Facebook from "./components/sign-in-sign-up-components/social-media-sign-in/facebook-sign-in";
+import SignInUp from "./components/sign-in-sign-up-components/sign-in.sign-up";
+import facebookLogin from 'react-facebook-login';
 
 class App extends React.Component {
 constructor(props) {
@@ -20,14 +20,11 @@ render() {
       <div>
         <Header />
         <Switch>
-          <Route exact path="/" />
+          <Route exact path="/" component={Homepage} />
+
           <Route path="/shop" />
-          <Route exact path="/checkout" />
-          <Route exact path="/JoinUs">
-          </Route>
+          <Route  path="/JoinUs" component={SignInUp}></Route>
         </Switch>
-        <Homepage />
-       
       </div>
     );
   }

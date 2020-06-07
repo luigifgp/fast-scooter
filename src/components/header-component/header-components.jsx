@@ -1,8 +1,7 @@
-import React from 'react';
-import './header-component.styles.scss';
-import {Link} from 'react-router-dom';
+import React from "react";
+import "./header-component.styles.scss";
+import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/Scooter_Logo.svg";
-import SignInUp from '../sign-in-sign-up-components/sign-in.sign-up';
 
 const Header = () => (
   <div>
@@ -24,8 +23,8 @@ const Header = () => (
           Contact
         </Link>
         <Link className="option" to="/JoinUs">
-       <SignInUp  />
-       </Link>
+        JoinUs
+        </Link>
         <Link className="option" to="/">
           <button type="button" className="button-hd">
             Download App

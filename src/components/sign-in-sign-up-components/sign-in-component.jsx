@@ -1,77 +1,14 @@
-import React from "react";
-import './sign-in.sign-up.styles.scss';
-//import Facebook from './social-media-sign-in/facebook-sign-in';
+import React from 'react';
 
 
-class SignInUp extends React.Component {
-  constructor(props) {
-    super(props);
+class SignIn extends React.Component{
+    constructor(props){
+        super(props);
+    }
 
-    this.state = { 
-      isToggleOn: true,
-      isLoggedIn: false,
-      name: "",
-      email: "",
-      password:""
-    };
-
-this.handleClick = this.handleClick.bind(this);
-
-  }
-
-
-handleClick() {
-  this.setState(state => ({
-    isToggleOn: !state.isToggleOn
-    
-  } ));
-}
-
- 
-  render() {
-  
-    
- return (
-   <div className="sign">
-     <div
-       className={
-         -this.state.isToggleOn ? "container" : "container right-panel-active "
-       }
-       id="container"
-     >
-       <div className="form-container sign-up-container">
-         <form action="#">
-           <h1 className="h1sign">Create Account</h1>
-           <div className="social-container">
-             <a className="social">
-               <i className="fab fa-facebook-f"></i>
-             </a>
-             <a className="social">
-               <i className="fab fa-google-plus-g"></i>
-             </a>
-             <a className="social">
-               <i className="fab fa-linkedin-in"></i>
-             </a>
-           </div>
-           <span className="spansign">or use your email for registration</span>
-           <input
-             type="text"
-             placeholder="Name"
-             
-           />
-           <input
-             type="email"
-             placeholder="Email"
-             
-           />
-           <input
-             type="password"
-             placeholder="Password"
-          
-           />
-           <button className="buttonsign">Sign Up</button>
-         </form>
-       </div>
+    render(){
+        return(
+         
        <div className="form-container sign-in-container">
          <form action="#">
            <h1 className="h1sign">Sign in</h1>
@@ -90,15 +27,16 @@ handleClick() {
            <input
              type="email"
              placeholder="Email"
-            
+             onChange={handleChange}
            />
            <input
              type="password"
              placeholder="Password"
+             onChange={handleChange}
             
            />
            <a href="#">Forgot your password?</a>
-           <button className="buttonsign">Sign In</button>
+           <button className="buttonsign">Sign In </button>
          </form>
        </div>
        <div className="overlay-container">
@@ -131,10 +69,8 @@ handleClick() {
            </div>
          </div>
        </div>
-     </div>
-   </div>
- );
-}
+        );
+    }
 }
 
-export default SignInUp;
+export default SignIn;
