@@ -15,4 +15,7 @@ const userSchema = new Schema({
 
 });
 
+userSchema.methods.generateHash = function(password){} 
+return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+
 module.exports = model('User', userSchema);

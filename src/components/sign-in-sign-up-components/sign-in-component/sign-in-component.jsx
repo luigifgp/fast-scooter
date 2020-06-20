@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from "axios";
 
+const API = "http://localhost:4000/api/users";
+
 class SignIn extends React.Component {
   constructor() {
     super();
@@ -13,33 +15,23 @@ class SignIn extends React.Component {
   }
 
   async componentDidMount() {
-    const res = await axios.get("http://localhost:4000/api/users");
+    const res = await axios.get(API);
    this.setState({users: res.data});
   }
 
   handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { _id, email, password } = this.state;
-
-    const users = axios.get("http://localhost:4000/api/users", {
-      _id: this.state._id,
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password
+    axios.get(API)
+    .then((res) =>{
+      console.log(res);
+      
     });
-
-    this.getUsers();
-
-    if (email && password === _id) {
-      return alert("succefully");
-    } else {
-      return alert("you falled");
-    }
   };
 
   handleChange = (event) => {
     const { name, value } = event.target;
+    
     this.setState({ [name]: value });
   };
 

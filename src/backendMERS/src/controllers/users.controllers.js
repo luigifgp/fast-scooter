@@ -14,24 +14,38 @@ usersCtrl.createUsers = async (req, res) => {
  
     const {name, email, password} = req.body;
     
-   const newuser =  new User({
+   const newUser =  new User({
         name,
         email,
         password
     });
 
-    await newuser.save();
+    await newUser.save();
 
 res.json({message:"user saved"})
 
 };
 
-usersCtrl.updateUsers = (req, res) => res.json({ g: "sdfsdf" });
+usersCtrl.updateUsers = async (req, res) =>{ 
+    const {name, email, password} = req.body;
+
+    await User.findByIdAndUpdate(req.params.id,{
+        name,
+        email,
+        password
+    })
+
+    res.json("User Updated");
+}
 
 usersCtrl.deleteUsers = async (req, res) =>{
 await User.findByIdAndDelete(req.params.id)
 res.json( "user deleted" );
 }
-usersCtrl.getUser = (req, res) => res.json({ a: " sdfsdf" });
+usersCtrl.getUser = async (req, res) => {
+
+    const user = await User.findById(req.params.id);
+    res.json(user);
+};
 
 module.exports =  usersCtrl;

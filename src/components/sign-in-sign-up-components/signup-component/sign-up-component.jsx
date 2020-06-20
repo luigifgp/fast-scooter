@@ -2,6 +2,7 @@ import React from 'react';
 import './Sign-up.styles.scss';
 import axios from 'axios';
 
+const API = "http://localhost:4000/api/users";
 
 class SignUp extends React.Component{
     constructor(){
@@ -21,17 +22,16 @@ class SignUp extends React.Component{
 
 
 getUsers = async() => {
-    const res = await axios.get('http://localhost:4000/api/users');
+    const res = await axios.get(API);
   this.setState({users: res.data})
 }
 
 
 handleSubmit = async event =>{
     
-
     const { name, email, password, confirmpassword } = this.state;
 
-    const res = axios.post('http://localhost:4000/api/users', {
+    const res = axios.post(API, {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password  
