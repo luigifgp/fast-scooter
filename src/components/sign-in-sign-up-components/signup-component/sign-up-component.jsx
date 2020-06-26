@@ -1,61 +1,50 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Sign-up.styles.scss';
-import axios from 'axios';
+import { register } from '../userFunctions/UserFunctions';
 
-const API = "http://localhost:4000/api/users";
 
-class SignUp extends React.Component{
+class SignUp extends Component{
     constructor(){
-        super();
-        this.state = { users: [],
+        super()
+        this.state = {
           name: "",
           email: "",
           password: "",
-          confirmpassword: ""
+          confirmpassword: "",
+          errors: {}
         };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     };
 
-    async componentDidMount(){
-      await this.getUsers();
-      console.log(this.state.users);
-    }
 
-
-getUsers = async() => {
-    const res = await axios.get(API);
-  this.setState({users: res.data})
-}
-
-
-handleSubmit = async event =>{
-    
-    const { name, email, password, confirmpassword } = this.state;
-
-    const res = axios.post(API, {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password  
-    });
-
-    
-this.getUsers();
-
-//fix this the user never won't sign up if don't have the same password
-//shearch how to the input will know who id is sign in 
-// let then in to the page "l0g 1in"
-
-
-    if (password !== confirmpassword) {
-      alert("passwords don't match");
-      return;
-    }
- 
-};
-
-       handleChange = event => {
+handleChange = event => {
             const {name, value} = event.target;
             this.setState({[name]: value});
        };
+
+
+handleSubmit = event =>{
+
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password
+    }
+    if (this.state.password !== this.state.confirmpassword){
+      alert("passswords not match");
+      return;
+    }
+    try{
+ register(newUser, res => {
+      console.log(res);
+    });
+}
+catch(error){
+  console.log(error);
+};
+};
 
     render() {
         
@@ -64,7 +53,7 @@ this.getUsers();
 
         return (
           <div className="form-container sign-up-container sign-up">
-            <form action="#" onSubmit={this.handleSubmit}>
+            <form noValidate onSubmit={this.handleSubmit}>
               <h1 className="h1sign">Create Account</h1>
               <div className="social-container">
                 <a className="social">

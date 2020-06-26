@@ -1,46 +1,48 @@
-import React from 'react';
-import axios from "axios";
+import React, {Component} from 'react';
+import { login } from "../userFunctions/UserFunctions";
 
-const API = "http://localhost:4000/api/users";
 
-class SignIn extends React.Component {
+class SignIn extends Component {
   constructor() {
     super();
 
-    this.state = { users: [],
-      _id: "",
+    this.state = {
       email: "",
-      password: ""
+      password: "",
+      errors: {}
     };
+
+    
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  async componentDidMount() {
-    const res = await axios.get(API);
-   this.setState({users: res.data});
-  }
-
-  handleSubmit = async (event) => {
-    event.preventDefault();
-
-    axios.get(API)
-    .then((res) =>{
-      console.log(res);
-      
-    });
-  };
-
-  handleChange = (event) => {
+handleChange = (event) => {
     const { name, value } = event.target;
     
     this.setState({ [name]: value });
   };
 
+  handleSubmit =  (event) => {
+
+    const user = {
+      email: this.state.email,
+      password: this.state.password,
+    }
+    login(user,(res) => {
+      if (res) {
+        console.log(res.data);
+      }
+    });  
+  };
+
+  
+
   render() {
     const { email, password } = this.state;
-
+ 
     return (
       <div className="form-container sign-in-container">
-        <form action="#" onSubmit={this.handleSubmit}>
+        <form noValidate onSubmit={this.handleSubmit}>
           <h1 className="h1sign">Sign in</h1>
           <div className="social-container">
             <a class="social">
