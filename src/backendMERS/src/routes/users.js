@@ -9,6 +9,7 @@ users.use(cors());
 
 process.env.SECRET_KEY = "secret";
 
+
 users.post("/register", (req, res) => {
   const today = new Date();
   const userData = {

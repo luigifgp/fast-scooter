@@ -3,7 +3,6 @@ import "./header-component.styles.scss";
 import { Link, withRouter } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/Scooter_Logo.svg";
 import DropDownMenu from '../sign-in-sign-up-components/logout-dropdown/dropdown-menu';
-import SignInUp from "../sign-in-sign-up-components/sign-in.sign-up";
 
 class Header extends Component {
 
@@ -34,8 +33,8 @@ class Header extends Component {
             <Link className="option" to="/About">
               About
             </Link>
-            <Link className="option" to="/Products">
-              Products
+            <Link className="option" to="/map">
+              Maps
             </Link>
             <Link className="option" to="/How its works">
               How its works
