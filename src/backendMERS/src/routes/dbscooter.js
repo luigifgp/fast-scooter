@@ -6,8 +6,8 @@ scooterdata.use(cors());
 const Scooterdata = require("../models/DBscooter");
 
 scooterdata.get("/api", function (req, res) {
-    const _id = req.body.id;
-  Scooterdata.findOne({_id: _id}, function(err, data) {
+    
+  Scooterdata.find({}, function(err, data) {
       res.json(data);
       console.log(err);
         if (err){ 
@@ -16,6 +16,16 @@ scooterdata.get("/api", function (req, res) {
   })
 
         
+});
+
+scooterdata.get("/api/:id", function (req, res) {
+Scooterdata.findById({_id: req.params.id}, function(err, data){
+  res.json(data);
+  if(err){
+    console.log(err)
+  }
+})
+
 });
 
 scooterdata.post("/api", function (req, res) {

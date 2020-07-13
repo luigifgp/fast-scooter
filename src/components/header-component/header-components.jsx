@@ -20,8 +20,6 @@ class Header extends Component {
         <Link className="option" to="">h</Link>
          </DropDownMenu> 
       );
-      
-      console.log(localStorage.usertoken);
    
     return (
       <div>

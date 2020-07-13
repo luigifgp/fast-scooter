@@ -27,7 +27,6 @@ export const login = (user, fun) => {
      fun(response);
       console.log(response);
       return response.data;
-      
      
     })
     .catch((err) => {
