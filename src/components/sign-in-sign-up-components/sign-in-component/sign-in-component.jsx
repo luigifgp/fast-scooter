@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import { login } from "../userFunctions/UserFunctions";
-
+import SignUp from "../signup-component/sign-up-component";
 
 class SignIn extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       email: "",
       password: "",
-      errors: {}
+      errors: {},
+      button: true
     };
 
     
@@ -35,15 +36,23 @@ handleChange = (event) => {
     });  
   };
 
+  handleButton = (props) =>{
+    this.props.button(props)
+  }
   
 
   render() {
     const { email, password } = this.state;
- 
+    const mq = window.matchMedia("(min-width: 650px)");
     return (
       <div className="form-container sign-in-container">
+      {mq.matches ? null:
+          <button 
+          type="button"
+          className="register-button" 
+          id="signUp" onClick={this.handleButton}>Register...</button>   }
         <form noValidate onSubmit={this.handleSubmit}>
-          <h1 className="h1sign">Sign in</h1>
+          <h1 className="h1sign ">Sign in</h1>
           <div className="social-container">
             <a class="social">
               <i className="fab fa-facebook-f"></i>

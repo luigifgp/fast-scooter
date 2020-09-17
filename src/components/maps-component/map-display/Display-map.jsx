@@ -3,6 +3,7 @@ import React from "react";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
 import axios from "axios";
+import './map-display.styles.scss';
 
 const URL = "http://localhost:5000/scooterdata/api";
 
@@ -42,7 +43,7 @@ class DisplayMap extends React.Component {
   render() {
     const scooter = this.state.data;
     return (
-      <Map center={[45.4, -75.7]} zoom={12}>
+      <Map  center={[45.4, -75.7]} zoom={12}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

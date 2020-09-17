@@ -3,3 +3,14 @@
     height: 700px;
     width: 100%;
 }
+
+.map-reload{
+     background-color: black;
+     padding: 5px;
+     
+}
+
+.reload-button{
+    border-radius: 10% / 50%;
+    background-color: transparentize($color: #ffffff, $amount: 0);
+}

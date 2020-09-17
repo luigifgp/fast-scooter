@@ -11,6 +11,7 @@ class SignInUp extends React.Component {
     this.state = { 
       isToggleOn: true,
       isLoggedIn: false,
+      button: false
       
     };
 
@@ -25,13 +26,25 @@ handleClick() {
     
   } ));
 }
+ 
+  getData = (button) => {
+  if(!button){
+   return null
+  }else{
+    this.setState(state => ({
+      button: !state.button
+    }))
+  }
+    }
 
  
   render() {
-  
+    const mq = window.matchMedia("(min-width: 650px)");
+    console.log(this.state.button)
+    
     
  return (
-   <div className="sign">
+   <div className={this.state.button ? "sign mobile-sign " : "sign"}>
      <div
        className={
          -this.state.isToggleOn ? "container" : "container right-panel-active "
@@ -40,7 +53,7 @@ handleClick() {
      >
 
      <SignUp/>
-     <SignIn/>
+       <SignIn button={this.getData}/>
      
        <div className="overlay-container">
          <div className="overlay">
@@ -56,6 +69,7 @@ handleClick() {
              >
                Sign In
              </button>
+            
            </div>
            <div className="overlay-panel overlay-right">
              <h1 className="">Hello, Friend!</h1>

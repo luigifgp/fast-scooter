@@ -3,22 +3,20 @@ import './homepage.styles.scss';
 
 
 const Homepage = () => (
-  <div className="">
-    <div className="row">
-      <div className="col-lg-6 home">
-        <img
-          className="title-image"
-          src="/image/scooter.jpg"
-          alt="iphone-mockup"
-        />
-        <h1 className="big-heading">A type of motorcycle</h1>
-        <h1 className="big-heading2">with a step-through.</h1>
-        <button type="button" className="button-pg button-title">
-          Download
+    <div className="menu">
+      <div className="home">
+      <hr className="hrstyles-2"></hr>
+      <hr ></hr>
+        <h1 className="big">A    type   of    motorcycle</h1>
+        <br></br>
+        <h1 className=" big">with a step-through.</h1>
+      <hr></hr>
+      <hr className="hrstyles-2"></hr>
+        <button type="button" className="btn  btn-edt">
+      read more...
         </button>
       </div>
     </div>
-  </div>
 );
 
 export default Homepage;

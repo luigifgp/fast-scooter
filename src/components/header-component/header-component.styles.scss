@@ -1,61 +1,60 @@
+//nabvar
+.navbar{
+  margin: 30px;
+  font-weight: bolder;
+  color: #ffff !important;
+   font-family: 'Special Elite', cursive;
+  :hover{
+  color: grey;
+ 
+}
 
-.header {
-  height: 70px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 25px;
-  
-
-  .logo-container {
-    height: 100%;
-    width: 70px;
-    padding: 25px;
-  }
-  
-  .logo{
-    width: 280px;
-    padding-bottom: 290px;
-    margin-left: 7rem;
-  }
-
-  .options {
-    width: 60%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    color: #ffff;
-    margin-right: 1rem;
-    font-size: 1.2rem;
-    font-family: 'Balsamiq Sans', cursive;
-    
-
-    .option {
-      padding: 10px 10px;
-      cursor: pointer;
-      color: #ffff;
-      text-decoration: none;
-      margin-top: 20px;
+  .navbar-collapse{
+    @media only screen and (max-width: 900px) {
+   left: 6px;
+    margin-left: -300px;
     }
   }
+ 
+}
+.navbar-nav{
+  padding: 0px 500px;
+color: #ffff ; 
+
+
 }
 
-.button-hd{
-  border-radius: 30px;
+.navbar-brand{
+left: 60px;
+@media only screen and (max-width: 900px) {
+   margin-left:9px;
+}
+}
+.navbar-toggler{
+  
+@media only screen and (max-width: 900px) {
+   padding:-10px auto -22px 50px;
+   
+}
+
+}
+
+.nav-link{
+   @media only screen and (max-width: 900px) {
+   left: 300px;
+   position: abosule;
+  }
+}
+
+
+.nav-item{
+  margin: 15px;
   font-size: 1.2rem;
-  border: 2px solid #ffff; 
-  padding: 4px 23px;
-  transition-duration: 0.4s;
-  background-color: #16817a;
-  color: #ffff;
-  font-weight: bolder;
+  color: #ffff ;
+  
 }
-
-.button-hd:hover{
-  box-shadow: 0 12px 16px 0 rgba(76, 76, 77, 0.24) 17px 50px 0 rgba(51, 51, 51, 0.19);
-  border: 1px solid #cceabb; 
-  color: #cceabb;
+.btn-ed{
+  font-size: 1.2rem;
+  margin-bottom: -1px;
+  padding: 10px;
 }
-
-

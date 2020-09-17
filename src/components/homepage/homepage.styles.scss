@@ -1,76 +1,104 @@
+hr {
+  border-top: 3px solid white;
+  width: 90%;
 
-
-
-.big-heading {
-  font-size: 2rem;
-  line-height: 1.5;
-  position: absolute;
-  text-align: center;
-  top: 120px;
-  margin: 0 20px 30px 40px;
-  color: black;
-  font-family: 'Chelsea Market', cursive;
 }
-.big-heading2{
-   font-size: 2rem;
+  .hrstyles-2{
+    width: 80%;
+  }
+
+.menu{
+  color: white;
+border-color: white;
+font-family: 'Monoton', cursive;
+text-align: center;
+margin: 90px 120px 90px;
+padding:10px 50px ;
+filter: drop-shadow(
+6px 10px 22px #000000);
+@media only screen and (max-width: 900px) {
+margin: 10px;
+margin-top: 60px;
+ }
+
+
+
+}
+.big{
+  font-size: 3rem;
   line-height: 1.5;
-  position: absolute;
-  text-align: center;
-    margin-left:130px;
-     top: 190px;
-     color: black;
-     font-family: 'Chelsea Market', cursive;
+   @media only screen and (max-width: 900px) {
+     font-size: 2rem;
+     text-align: c;
+     
+     
+   }
 }
 
 
 /* Buttons */
 
-.button-pg {
-  position: absolute;
+.btn-edt {
+  position: relative;
   margin: auto 200px 260px auto;
-  top: 280px;
-  right: 120px;
-  border-radius: 30px;
-  font-size: 1.6rem;
-  border: 3px solid #16817a; 
+  top: 30px;
+  left: 100px;
+  font-size: 1.2rem;
   padding: 2px 27px;
-  background-color: #ffff;
+   border: solid 2px white;
+  border-radius: 100px;
+  color: white;
+  @media only screen and (max-width: 900px) {
+     right:30px;
+     top: 20px;
+     margin-left:-40px;
+     
+   }
+
+ 
 }
 
 
-
-.button-title{
-  font-family: 'Balsamiq Sans', cursive;
-  color: #16817a;
-  font-weight: bolder;
-  
-
-}
-
-  .button-title:hover{
-    color: #024249;
-    border: 2px solid #024249;
-     box-shadow: 0 12px 16px 0 rgba(109, 161, 230, 0.24), 0 17px 50px 0 rgba(80, 159, 248, 0.19);
+  .btn-edt:hover{
+    color: grey;
+    border: 2px solid #363636;
+     box-shadow: 0 6px 6px 0 grey;
   }
 
 
 .home{
-    position: relative;
-    justify-content: center;
+
+     
+    
 }
 
 /* Title Image */
 
 .title-image {
-  width: 60%;
- left: 400px;
- right: 600px;
+  width: 100%;
  display: flex;
  margin: 90px 170px auto;
+ height: 150%;
 }
 
 
 .section-heading {
   font-size: 3rem;
   line-height: 1.5;
+}
+
+.text-read{
+ top: 140px;
+ left: 50px;
+  position: relative;
+
+}
+
+
+//icon
+.icon{
+ margin-left: -20px;
+ padding-top: 10px;
+ color:white;
+ width: 70px;
 }

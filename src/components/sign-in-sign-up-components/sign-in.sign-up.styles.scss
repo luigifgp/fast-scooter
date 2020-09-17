@@ -12,8 +12,22 @@
 	height: 100vh;
     margin: -20px 0 50px;
     box-sizing: border-box;
-    padding-bottom: 60px;
+	padding-bottom: 100px;
+	 @media only screen and (max-width: 1200px) {
+		width: 80%;
+	}
+	 @media only screen and (max-width: 600px) {
+		width: 190%;
+		margin-top:70px;	
+	}
+
 }
+
+.mobile-sign{
+		 @media only screen and (max-width: 600px) {
+		margin-left: -400px;
+		}
+	}
 
 .h1sign {
 	font-weight: bold;
@@ -41,8 +55,8 @@
 
 .buttonsign {
 	border-radius: 20px;
-	border: 2px solid #16817a;
-	background-color: #16817a;
+	border: 2px solid #0f5550;
+	background-color: #093b38;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -63,9 +77,25 @@
 .buttonsign.ghost {
 	background-color: transparent;
 	border-color: #FFFFFF;
+	@media only screen and (max-width: 600px) {
+		margin-top: 40px;
+    }
 	
 }
+@media only screen and (max-width: 600px) {
+		
+    
+.register-button{
+	margin: 10px 250px;
+	padding: -1px;
+	border-radius: 16px;
+	border: solid 1.5px lightseagreen;
+	font-weight: bolder;
+	color: lightseagreen;
+	background-color: transparent;
 
+}
+}
 form {
 	background-color: #FFFFFF;
 	display: flex;
@@ -158,8 +188,8 @@ input {
 
 .overlay {
 	background: #16817a;
-	background: -webkit-linear-gradient(to right, #16817a, rgb(8, 216, 164));
-	background: linear-gradient(to right, rgb(44, 247, 247), #16817a );
+	background: -webkit-linear-gradient(to right, #085c56, rgb(3, 134, 102));
+	background: linear-gradient(to right, rgb(21, 201, 201), #077069 );
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

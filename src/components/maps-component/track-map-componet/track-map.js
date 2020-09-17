@@ -1,88 +1,121 @@
-import React from 'react';
-import LeafletReactTrackPlayer from "./laeflet-react-track-player";
-
-import { Map, TileLayer } from "react-leaflet";
-import './track-map-styles.scss';
-import axios from "axios";
+import React from "react";
+import { Map, TileLayer, Marker, Popup, Tooltip, Polyline} from "react-leaflet";
+import axios from 'axios';
+import { Icon } from "leaflet";
+import Control from "react-leaflet-control";
 
 const URL = "http://localhost:5000/scooterdata/api/";
+
+export const icon = new Icon({
+  iconUrl: "/img/mech.svg",
+  iconSize: [25, 25]
+});
 
 class TrackMap extends React.Component {
   constructor(props) {
     super(props);
+    this.mapRef = React.createRef();
     this.state = {
-      lat: 47.445745,
-      lng: 40.272891666666666,
-      zoom: 15,
-      type: "time",
       scooter: {},
-      show: true,
-      incidents: "",
-      posiLat: [],
-      posiLng: {}
+      route: {},
+      lat: 51.315,
+      lng: -0.09,
+      zoom: 13,
+      positions:  []
     };
   }
+    componentDidMount() {
+      axios
+        .get(URL + this.props.ScooterData)
+        .then((found) => {
+          
+          this.setState({ scooter: [found.data] });
+          console.log(found.data)
 
-  componentDidMount() {
-    axios
-      .get(URL + this.props.ScooterData)
-      .then((found) => {
-        this.setState({ scooter: found.data });
-        console.log(found.data);
+          this.setState({ route: found.data.route });
 
-         const scooter = this.state.scooter.route;
-         scooter &&
-           this.state.scooter.route.forEach((dt) =>
-             this.setState({ posiLat: [dt.lat, dt.lng] })
-           );
-            const { posiLat, posiLng } = this.state;
-            console.log( posiLat);
+         const posi = this.state.route.map(routes =>(
+             [routes.lat, routes.lng] 
+          ))
 
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+          this.setState({positions: posi})
+          console.log(this.state.positions[0])
+        })
+        .catch((err) => {
+          console.log(err);
+        })};
+
+
+  zoomOut = () => {
+    const map = this.mapRef.current;
+    if (map != null) {
+      map.leafletElement.zoomOut();
+    }
+  };
+  zoomOut() {
+    alert("zoomOut");
+    window.map = this.map;
+    this.map.setZoom(0);
+    //this.setState({ ...this.state, zoom: this.state.zoom - 1 });
+  }
+  reload() {
+    window.location.reload();
   }
 
-  
-
+  renderPositions(positions) {
+    return (
+      <>
+        <Polyline color="#48C9B0" positions={positions} />
+       
+      </>
+    );
+  }
   render() {
-  const { posiLat, posiLng } = this.state;
-  console.log( posiLat);
-    const position = [posiLng];
-    
-     return (
-      this.state.posiLat ?  null : <div className="leaflet-container">
-        <Map center={position} zoom={this.state.zoom}>
-          {/* <LeafletReactTrackPlayer
-            track={this.state.scooter}
-            optionMultyIdxFn={function (p) {
-              return p.status;
+    const center = this.state.positions[0];
+    const positions = this.state.positions;
+ 
+   
+    return (
+      <Map
+        ref={this.mapRef}
+        onContextmenu={() => this.zoomOut()}
+        center={center}
+        zoom={this.state.zoom}
+      >
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+        />
+        <Control position="topleft">
+          <div
+            className="map-reload"
+            style={{
+              fontweight: "bold",
             }}
-            optionsMulty={[
-              { color: "#b1b1b1" },
-              { color: "#06a9f5" },
-              { color: "#202020" },
-              { color: "#D10B41" },
-              { color: "#78c800" },
-            ]}
-            useControl={true}
-            progressFormat={this.state.type}
-            customMarker={true}
-            defaultSpeed={1000}
-            streamData={false}
-            changeCourseCustomMarker={true}
-            iconCustomMarker={"/img/mech.svg"}
-          /> */}
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          />
-        </Map>  
-      </div>  
+          >
+            <div>
+              <button
+                className="reload-button"
+                value="Reload Page"
+                onClick={this.reload}>
+                Reload 
+              </button>
+            </div>
+          </div>
+        </Control>
+        <Marker position={center} icon={icon}>
+          <Popup>
+            <b>lat:</b> asd <br />
+            <b>lng:</b> zd <br />
+          </Popup>
+          <Tooltip direction="auto" offset={[0, 10]} opacity={1}>
+            toolTip
+          </Tooltip>
+        </Marker>
+        {this.renderPositions(positions)}
+      </Map>
     );
   }
 }
-
 
 export default TrackMap;

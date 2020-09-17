@@ -1,4 +1,15 @@
 
-
+body{
+ background-image: url("/image/portada2.jpg");
+position: relative;
+  /* Set a specific height */
+  
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+  
 
 
