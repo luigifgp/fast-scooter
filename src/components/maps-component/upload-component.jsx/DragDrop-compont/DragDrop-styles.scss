@@ -34,7 +34,7 @@
             opacity: 0;
         }
         .browse-file{
-            margin-bottom: 50px;
+            margin-bottom: 60px;
               border: none;
              color: black;
              padding: 2px 25px;
@@ -44,7 +44,7 @@
             background-color: rgb(26, 170, 218);
         }
         .files-preview-container {
-        max-height: 30px;
+        max-height: 300px;
             .file {
                 width: 6.8em;
                 height: 60px;
@@ -54,7 +54,7 @@
                 margin-top: 50px;
                 border-radius: 4px;
                 img {
-                    width:9 80%;
+                    width: 90%;
                     height: 110%;
                 }
                 .containerr {
@@ -63,8 +63,8 @@
                     flex-direction: column;
                     top: 0;
                     left: 0;
-                    width: 120%;
-                    height: 100%;
+                    width: 110%;
+                    height: 300%;
                     padding: 0;
                     transition: background, 160ms ease-in-out;
                     &:hover {
@@ -73,16 +73,7 @@
                             visibility: visible;
                         }
                     }
-                    .remove-btn {
-                        color: #af1e1b;
-                        width: fit-content;
-                        position: absolute;
-                        right: -7px;
-                        top: -7px;
-                        z-index: 99;
-                        cursor: pointer;
-                        visibility: hidden;
-                    }
+                   
                     .progress-bar {
                         position: absolute;
                         display: flex;
@@ -149,7 +140,11 @@
     display: flex;
     margin-top: 10px;
    width: 1000px;
-   margin-left: -25px;
+   margin-left: 300px;
+   margin-bottom: 70px;
+   @media only screen and (max-width: 900px) {
+       margin-left: 150px;
+   }
 }
 
 
@@ -175,19 +170,31 @@
 padding-bottom: 20px;
 color: red;
 position: absolute;
-margin: 72px;
+margin: 65px;
 top: -130px;
 }
 
 .barProgress{
     position: relative;
     top: 10px;
-    left: -100px;
+    left: 215px;
     height:3.5px;
-    width: 300%;
+    width: 40%;
     background-color: rgb(209, 208, 208);
     font-size: 30px;
+    margin-bottom: 70px;
+    text-align: center;
+    @media only screen and (max-width: 900px) {
+    margin-left: -110px;
+    width: 50%;
+    }
 }
 .imagen-uploading{
-margin-left: 15px;
+    margin-top: 70px;
+margin-left: 355px;
+margin-bottom:e 3px;
+text-align: center;
+@media only screen and (max-width: 900px) {
+    margin-left: 200px;
+    }
 }

@@ -1,137 +1,115 @@
-import React from 'react';
-import { AnchorButton, Intent} from "@blueprintjs/core";
+
+import React, { useState, useEffect, useRef } from "react";
 import './DragDrop-styles.scss';
-import _ from "lodash";
-import ReactDropzone from "react-dropzone";
-import axios from 'axios';
-import Uploading from '../uploading-success.component/uploading';
+import UploadService from './Service/FileUploadService';
+import UploadedDone from './successfull-uploaded/uploadedDone';
 
-const URL = "http://localhost:5000/scooterdata/api/uploadfile";
+const UploadFiles = () => {
+  const [selectedFiles, setSelectedFiles] = useState(undefined);
+  const [currentFile, setCurrentFile] = useState(undefined);
+  const [progress, setProgress] = useState(0);
+  const [message, setMessage] = useState("");
+  const [fileInfos, setFileInfos] = useState([]);
+  const refInput = useRef();
 
-export default class DragDrop extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loadedFiles: [],
-      document: "",
-      icon: true,
-      uploadPercentage: 0
-      
-    };
-  }
-
-  onFileLoad(e) {
- 
-    let data = new FormData();
-    data.append("uploadfile");
-    console.warn(this.state.document)
-   
-const file =  this.setState({ document: e.currentTarget.files[0]  });
-
-console.log(file);
-
-    const options = {
-      onUploadProgress: (progressEvent) => {
-        const {loaded, total} = progressEvent;
-        let percent = Math.floor((loaded * 100) / total)
-        console.log( `${loaded}kb of ${total}kb | ${percent}%`);
-
-        if (percent < 100){
-          this.setState({ uploadPercentage: percent})
-          console.log(this.state.uploadPercentage)
-        }
-      }
-    }
-
-    axios.post(URL, data, options).then(res =>  {
-      console.log(res)
-      this.setState({uploadPercentage: 100}, () => {
-        setTimeout(() => {
-          this.setState({uploadPercentage : 0})
-        },1000)
-      })
-    })
- }
-  removeLoadedFile(file) {
-    //Remove file from the State
-    this.setState((prevState) => {
-      let loadedFiles = prevState.loadedFiles;
-      let newLoadedFiles = _.filter(loadedFiles, (ldFile) => {
-        return ldFile !== file;
-      });
-      return {loadedFiles: newLoadedFiles};
+  useEffect(() => {
+    UploadService.getFiles().then((response) => {
+      setFileInfos(response.data);
     });
-  }
+  }, []);
 
-  removeAllLoadedFile() {
-    this.setState({loadedFiles: []});
-  }
+ const selectFile = async(event) => {
+
+    const file = event.target.files;
+
+    setSelectedFiles(file);
+    console.log(file);
 
  
+ }
+ 
+  const upload = () => {
+     let currentFile =  selectedFiles[0];
+/// for fix if the file is named "scooter" have to give error
+      setProgress(0);
+      setCurrentFile(currentFile);
 
-  onUpload() {
-    const {document} = this.state;
+      UploadService.upload(currentFile, (event) => {
+        setProgress(Math.round((100 * event.loaded) / event.total));
+      })
+        .then((response) => {
+          setMessage(response.data.message);
+          return UploadService.getFiles();
+        })
+        .then((files) => {
+          setFileInfos(files.data);
+        })
+        .catch(() => {
+          setProgress(0);
+          setMessage("Could not upload the file!");
+          alert(message);
+          setCurrentFile(undefined);
+        });
 
+      setSelectedFiles(undefined);
+    };
+ console.log(currentFile, message);
 
-    this.setState({ percent: +1 });
-      //Simulate a REAL WEB SERVER DOING IMAGE UPLOADING
-   
-    
-  }  
-    moveBar()  {
-     
-
-    }
-  render() {
-    console.log(this.state.loadedFiles, this.state.document, this.state.uploadPercentage)
+ if (selectedFiles) {
+   upload();
+ }
+ 
+ 
     return (
-      <div
-        className="inner-container"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        <div className="draggable-container">
-          <input
-            type="file"
-            id="file-browser-input"
-            name="file-browser-input"
-            ref={(input) => (this.fileInput = input)}
-            onDragOver={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
+      <div>
+        {currentFile ? (
+          <UploadedDone progress={progress} currentFile={currentFile} />
+        ) : (
+          <div
+            className="inner-container"
+            style={{
+              display: "flex",
+              flexDirection: "column",
             }}
-            onDrop={this.onFileLoad.bind(this)}
-            onChange={this.onFileLoad.bind(this)}
-          />
-       
-          {this.state.document ? <Uploading counter={this.state.uploadPercentage} /> : (
-            <div>
+          >
+            <div className="draggable-container">
+              <input
+                type="file"
+                id="file-browser-input"
+                // fix the ref to get the button show the library for upload
+                ref={(input) => refInput}
+                name="file-browser-input"
+                onDragOver={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }}
+                onDrop={selectFile}
+                onChange={selectFile}
+              />
+
               <div className="helper-text">
                 <img
                   className="upload-image-logo"
                   src="image/upload-logo.jpeg"
                   alt="upload-logo"
                 ></img>
-                <p>Drag and Drop Your File Here</p>
+                <p>Drag or Drop Your File Here</p>
               </div>
               <div className="file-browser-container">
-                <AnchorButton
+                <button
                   className="browse-file"
-                  text="Browse File"
-                  intent={Intent.PRIMARY}
-                  minimal={true}
-                  onClick={() => this.fileInput.click()}
-                />
+                  disabled={!selectedFiles}
+                  onClick={console.log("hello")}
+                >
+                  Browse File
+                </button>
               </div>
             </div>
-          )}
-          <div></div>
-        </div>
+          </div>
+        )}
       </div>
     );
 
   }
 
-}
+export default UploadFiles;
