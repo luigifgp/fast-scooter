@@ -1,15 +1,13 @@
-
-body{
- background-image: url("/image/portada2.jpg");
-position: relative;
-  /* Set a specific height */
-  
-  /* Create the parallax scrolling effect */
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+body {
+    font-family: 'Open Sans Condensed';
+    padding: 20px 60px;
 }
-  
 
+a {
+    text-decoration: none;
+    color: black;
+}
 
+*{
+    box-sizing: border-box;
+}
